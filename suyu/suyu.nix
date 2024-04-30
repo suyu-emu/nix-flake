@@ -42,7 +42,7 @@ stdenv.mkDerivation(finalAttrs: {
   src = fetchgit {
     url = "https://git.suyu.dev/suyu/suyu";
     rev = "v${finalAttrs.version}";
-    sha256 = "wLUPNRDR22m34OcUSB1xHd+pT7/wx0pHYAZj6LnEN4g";
+    sha256 = "wLUPNRDR22m34OcUSB1xHd+pT7/wx0pHYAZj6LnEN4g=";
   };
 
   nativeBuildInputs = [

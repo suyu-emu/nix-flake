@@ -43,7 +43,6 @@ stdenv.mkDerivation(finalAttrs: {
     url = "https://git.suyu.dev/suyu/suyu";
     rev = "v${finalAttrs.version}";
     sha256 = "wLUPNRDR22m34OcUSB1xHd+pT7/wx0pHYAZj6LnEN4g=";
-    fetchSubmodules = true;
   };
 
   nativeBuildInputs = [
@@ -102,7 +101,7 @@ stdenv.mkDerivation(finalAttrs: {
 
   cmakeFlags = [
     # actually has a noticeable performance impact
-    "-DSUYUENABLE_LTO=ON"
+    "-DSUYU_ENABLE_LTO=ON"
 
     # build with qt6
     "-DENABLE_QT6=ON"
@@ -111,22 +110,22 @@ stdenv.mkDerivation(finalAttrs: {
     # use system libraries
     # NB: "external" here means "from the externals/ directory in the source",
     # so "off" means "use system"
-    "-DSUYUUSE_EXTERNAL_SDL2=OFF"
-    "-DSUYUUSE_EXTERNAL_VULKAN_HEADERS=OFF"
+    "-DSUYU_USE_EXTERNAL_SDL2=OFF"
+    "-DSUYU_USE_EXTERNAL_VULKAN_HEADERS=OFF"
 
     # don't use system ffmpeg, suyu uses internal APIs
-    "-DSUYUUSE_BUNDLED_FFMPEG=ON"
+    "-DSUYU_USE_BUNDLED_FFMPEG=ON"
 
     # don't check for missing submodules
-    "-DSUYUCHECK_SUBMODULES=OFF"
+    "-DSUYU_CHECK_SUBMODULES=OFF"
 
     # enable some optional features
-    "-DSUYUUSE_QT_WEB_ENGINE=ON"
-    "-DSUYUUSE_QT_MULTIMEDIA=ON"
+    "-DSUYU_USE_QT_WEB_ENGINE=ON"
+    "-DSUYU_USE_QT_MULTIMEDIA=ON"
     "-DUSE_DISCORD_PRESENCE=ON"
 
     # We dont want to bother upstream with potentially outdated compat reports
-    "-DSUYUENABLE_COMPATIBILITY_REPORTING=OFF"
+    "-DSUYU_ENABLE_COMPATIBILITY_REPORTING=OFF"
     "-DENABLE_COMPATIBILITY_LIST_DOWNLOAD=OFF" # We provide this deterministically
   ];
 

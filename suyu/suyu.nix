@@ -12,6 +12,7 @@
 , cubeb
 , discord-rpc
 , enet
+, ffmpeg-full
 , fmt
 , glslang
 , libopus
@@ -66,12 +67,14 @@ stdenv.mkDerivation(finalAttrs: {
     # intentionally omitted: dynarmic - prefer vendored version for compatibility
     enet
 
-    # vendored ffmpeg deps
+    # ffmpeg deps (also includes vendored)
+    # we do not use internal ffmpeg because cuda errors
     autoconf
     yasm
     libva  # for accelerated video decode on non-nvidia
     nv-codec-headers-12  # for accelerated video decode on nvidia
-    # end vendored ffmpeg deps
+    ffmpeg-full
+    # end ffmpeg deps
 
     fmt
     # intentionally omitted: gamemode - loaded dynamically at runtime
@@ -113,8 +116,8 @@ stdenv.mkDerivation(finalAttrs: {
     "-DSUYU_USE_EXTERNAL_SDL2=OFF"
     "-DSUYU_USE_EXTERNAL_VULKAN_HEADERS=OFF"
 
-    # don't use system ffmpeg, suyu uses internal APIs
-    "-DSUYU_USE_BUNDLED_FFMPEG=ON"
+    # # don't use system ffmpeg, suyu uses internal APIs
+    # "-DSUYU_USE_BUNDLED_FFMPEG=ON"
 
     # don't check for missing submodules
     "-DSUYU_CHECK_SUBMODULES=OFF"

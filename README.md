@@ -3,7 +3,17 @@ This is a flake to allow for the installation of suyu on systems using the Nix p
 
 ## Usage
 
-Add the following in your system flake inputs:
+Firstly, ensure git is installed in your ***system*** packages, since this is not hosted on github, gitlab, etc... It will ***not*** work with git installed in your user packages.
+
+```nix
+environment.systemPackages = with pkgs; [
+    # the rest of your packages here
+    git
+    # more of your packages here
+];
+```
+
+Add the following in your flake inputs:
 
 ```nix
 {
@@ -12,11 +22,13 @@ Add the following in your system flake inputs:
 
         suyu.url = "git+https://git.suyu.dev/suyu/nix-flake";
         suyu.inputs.nixpkgs.follows = "nixpkgs"; # optional, saves space, recommended
-    }
+
+        # more of your inputs
+    };
 }
 ```
 
-Afterwards, you can add it to your user or system packages by referring to `suyu.packages.YOURPLATFORM.suyu` pr `suyu.packages.YOURPLATFORM.default`
+Afterwards, you can add it to your user or system or user packages by referring to `suyu.packages.YOURPLATFORM.suyu` or `suyu.packages.YOURPLATFORM.default` in your flake outputs.
 
 **Note:** This will compile the package from scratch. It can take anywhere between 5-30 minutes depending on your system. 
 

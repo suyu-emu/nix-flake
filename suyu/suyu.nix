@@ -182,12 +182,5 @@ stdenv.mkDerivation(finalAttrs: {
       # Icons
       asl20 mit cc0
     ];
-    maintainers = with maintainers; [
-      ashley
-      ivar
-      joshuafern
-      sbruder
-      k900
-    ];
   };
 })

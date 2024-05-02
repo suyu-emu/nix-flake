@@ -12,7 +12,7 @@
 , cubeb
 , discord-rpc
 , enet
-, ffmpeg-full
+, ffmpeg-headless
 , fmt
 , glslang
 , libopus
@@ -73,7 +73,7 @@ stdenv.mkDerivation(finalAttrs: {
     yasm
     libva  # for accelerated video decode on non-nvidia
     nv-codec-headers-12  # for accelerated video decode on nvidia
-    ffmpeg-full
+    ffmpeg-headless
     # end ffmpeg deps
 
     fmt
